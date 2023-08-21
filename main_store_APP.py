@@ -10,6 +10,7 @@ from actors import Actor
 
 #---------------------------------------------------------------- Database class
 OBJECTS = []
+ACTORS = []
 
 class Database :
 
@@ -59,15 +60,16 @@ class Stor :
     @staticmethod
     def show_menue () :
         print ()
-        print (" print 1 to Add new media ")
-        print (" print 2 to Edit a media ")
-        print (" print 3 to Remove a media ")
-        print (" print 4 to Search for a media ")
-        print (" print 5 to Find a media with specific length ")
-        print (" print 6 to Show the list of media ")
-        print (" print 7 to Show the information of a media ")
-        print (" print 8 to download a media ")
-        print (" print 9 to Exit the application ")
+        print (" Enter 1 to Add new media ")
+        print (" Enter 2 to Edit a media ")
+        print (" Enter 3 to Remove a media ")
+        print (" Enter 4 to Search for a media ")
+        print (" Enter 5 to Find a media with specific length ")
+        print (" Enter 6 to Show the list of media ")
+        print (" Enter 7 to Show the information of a media ")
+        print (" Enter 8 to download a media ")
+        print (" Enter 9 to see the list of actors ")
+        print (" Enter 10 to Exit the application ")
         print ()
 
     @staticmethod
@@ -201,6 +203,21 @@ class Stor :
         obj = Stor.search ()
         if obj != " No " :
             obj.download ()
+    
+    
+    @staticmethod
+    def actors () :
+        obj = Stor.search ()
+        if obj != " No " :
+            result = obj.casts.split ( "-" )
+            
+        for x in result :
+            person = Actor ( x )
+            ACTORS.append ( person )
+        
+        for x in ACTORS :
+            print ( x.name )
+            
 
 # #---------------------------------------------------------------- main part
 print (" Hello😊! Welcom to my Application.")
@@ -236,8 +253,11 @@ while True :
     
     elif user_choice == "8" :
         Stor.download ()
-    
+
     elif user_choice == "9" :
+        Stor.actors ()
+    
+    elif user_choice == "10" :
         data.write ()
         exit (0)
     
